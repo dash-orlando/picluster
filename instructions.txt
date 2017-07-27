@@ -1,0 +1,33 @@
+# Instructions on setting up devices and accessing STOKES
+# NOTE: if being asked for a passhphrase, it can be found
+	in the keys folder of the repo.
+
+1) Clone the piluster repo:
+$ sudo git clone https://github.com/pd3d/piclustter
+
+2) Change ownership of folder from root to pi:
+$ cd piclustter/keys
+$ sudo chown -R pi .
+
+3) Write RSA key and copy to the ssh folder:
+$ openssl rsa -in flobofenoglietto_id_rsa_1 -out key
+$ cp key /home/pi/.ssh/
+
+4) Create configuration file:
+$ cd /home/pi/.ssh/
+$ nano config
+
+Type the following
+-----------------------------------
+>>>host stokes
+>>>	hostname stokes.ist.ucf.edu
+>>>	user flobofenoglietto
+>>>	identityfile /home/pi/.ssh/key
+
+5) Change permissions of the key file
+$ chmod 600 /home/pi/.ssh/key
+
+
+
+# ON COPYING FILES FROM RASPBERRY PI TO STOKES
+$ rsync -P /path/to/file.extension
